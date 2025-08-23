@@ -50,3 +50,16 @@ export const deleteDoctor =async (req,res)=>{
         res.status(500).json({ message: error.message });
     }
 }
+
+// Update Doctor
+export const updateDoctor =async (req,res)=>{
+    try {
+        const {id}=req.query;
+        const {name ,image , spec, fee, deg, exp,awail}=req.body;
+        const doctors = await pool.query("UPDATE doctors SET name=$1 ,image=$2 , spec=$3, fee=$4, deg=$5, exp=$6,awail=$7 WHERE id=$8", [name ,image , spec, fee, deg, exp,awail,id]);
+        res.status(200).json(doctors.rows);
+        
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}
