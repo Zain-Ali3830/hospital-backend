@@ -17,8 +17,11 @@ export const getDoctors = async (req, res) => {
 // add doctor
 export const addDoctor =async (req,res)=>{
     try {
-        const {name ,image , spec, fee, deg, exp,awail}=req.body;
-        const newDoctor = await pool.query("INSERT INTO doctors (name ,image , spec, fee, deg, exp,awail) VALUES ($1,$2,$3,$4,$5,$6,$7) RETURNING *", [name ,image , spec, fee, deg, exp,awail]);
+        const {name , spec, fee, deg, exp,avail}=req.body;
+        const picurl = req.files?.image[0].path;
+        console.log(picurl)
+        const newDoctor = await pool.query("INSERT INTO doctors (name ,image , spec, fee, deg, exp,avail) VALUES ($1,$2,$3,$4,$5,$6,$7) RETURNING *", [name ,picurl , spec, fee, deg, exp,avail]);
+        console.log(newDoctor.rows)
         res.status(201).json(newDoctor.rows[0]);
     } catch (error) {
         res.status(500).json({ message: error.message });
