@@ -6,8 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon index.js",
-    "postinstall": "npm install --legacy-peer-deps"
+    "dev": "nodemon index.js"
   },
   "author": "Zain Ali",
   "license": "ISC",
@@ -18,10 +17,12 @@
     "express": "^5.1.0",
     "multer": "^2.0.2",
     "multer-storage-cloudinary": "^4.0.0",
-    "nodemon": "^3.1.10",
     "pg": "^8.16.3",
     "pkg": "^5.8.1"
   },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+},
    "engines": {
     "node": "18.x"
   }
