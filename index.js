@@ -5,7 +5,7 @@ import emergencyDocotorsRouter from './app/routes/emergencyDoctors.routes.js';
 import contactRouter from './app/routes/contact.routes.js';
 import cors from 'cors'
 const app=express();
-app.use(cors({origin:"http://localhost:3000"}))
+app.use(cors({origin:"https://hospital-site-production-d019.up.railway.app/"}))
 app.use(express.json());
 
 const port=process.env.PORT || 4000;
