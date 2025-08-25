@@ -9,7 +9,12 @@ app.use(cors({origin:"http://localhost:3000"}))
 app.use(express.json());
 
 const port=process.env.PORT || 4000;
-
+app.get('/', (req, res) => {
+  res.status(200).json({
+    message: 'Backend is live and running!',
+    status: 'success'
+  });
+});
 app.use("/api/doctors",router)
 app.use("/api",appointmentRouter)
 app.use("/api",emergencyDocotorsRouter)
