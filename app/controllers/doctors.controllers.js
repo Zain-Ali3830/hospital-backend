@@ -24,7 +24,6 @@ export const addDoctor = async (req, res) => {
       "INSERT INTO doctors (name ,image , spec, fee, deg, exp,avail) VALUES ($1,$2,$3,$4,$5,$6,$7) RETURNING *",
       [name, picurl, spec, fee, deg, exp, avail]
     );
-    console.log(newDoctor.rows);
     res.status(201).json(newDoctor.rows[0]);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -83,3 +82,18 @@ export const updateDoctor = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+
+export const doctorAppointment=async (req,res)=>{
+  const {name , email , phone}=req.body;
+  if(!name||!email||!phone){
+    return res.status(401).json({message:"Please fill the complete form "});
+  }
+  try {
+    const appointment=await pool.query("INSERT INTO appointments (name , email , phone) VALUES ($1,$2,$3) RETURNING *" , [name , email , phone])
+    return res.status(201).json({message:"Appointment Booked Successfully",patient:appointment.rows});
+    
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+}
