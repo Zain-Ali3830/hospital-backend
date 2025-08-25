@@ -86,11 +86,8 @@ export const updateDoctor = async (req, res) => {
 
 export const doctorAppointment=async (req,res)=>{
   const {name , email , phone}=req.body;
-  if(!name||!email||!phone){
-    return res.status(401).json({message:"Please fill the complete form "});
-  }
   try {
-    const appointment=await pool.query("INSERT INTO appointments (name , email , phone) VALUES ($1,$2,$3) RETURNING *" , [name , email , phone])
+    const appointment=await pool.query("INSERT INTO docappointment (name , email , phone) VALUES ($1,$2,$3) RETURNING *" , [name , email , phone])
     return res.status(201).json({message:"Appointment Booked Successfully",patient:appointment.rows});
     
   } catch (error) {

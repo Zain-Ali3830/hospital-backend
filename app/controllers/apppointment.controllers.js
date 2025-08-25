@@ -5,13 +5,6 @@ import pool from "../db/index.js";
 export const appointment=async (req,res)=>{
     const {name , email , phone , date ,doctor, department,message}=req.body;
     try {
-        if(!name||!email||!phone||!date||!doctor||!department){
-            console.log(name,email,phone,date,doctor,department)
-          return  res.status(401).send({
-                message:"Please fill the complete form "
-            })
-        }
-
         const check= await pool.query("SELECT * FROM appointments WHERE email=$1 AND date=$2 AND doctor=$3 AND department=$4 ",[email,date,doctor,department]);
         if(check.rows.length>0){
           return  res.send({
