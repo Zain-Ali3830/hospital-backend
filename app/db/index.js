@@ -6,11 +6,11 @@ dotenv.config()
 const { Pool } = pkg
 
 const pool = new Pool({
-    user: process.env.PGUSER,
-    host: process.env.PGHOST,
+    user: process.env.DB_USER,
+    host: process.env.DB_HOST,
     database: process.env.DB_NAME,
-    password: process.env.PGPASSWORD,
-    port: process.env.PGPORT
+    password: process.env.DB_PASSWORD,
+    port: process.env.DB_PORT
 })
 
 export default pool
